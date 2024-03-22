@@ -4,7 +4,7 @@ def main():
     count_words = get_count_words(text)
     count_letters = get_count_letter(text)
     print(f"{count_words} words found in the document")
-    print(f"{count_letters} words found in the document")
+    print(f"{count_letters} letters found in the document")
     
 def get_book_text(path):
     with open(path) as f:
@@ -21,11 +21,16 @@ def get_count_letter(text):
     # lowercase
     lowered_string = text.lower();
     # split letters
-    letters = lowered_string.split()
+    letters = list(lowered_string)
     # count letters and add to dictionary
+    lettersCount = {}
+        
+    for letter in letters:
+        if letter in lettersCount:
+            lettersCount[letter] += 1
+        else:
+            lettersCount[letter] = 1
     
-    letterCount = 0
-    
-    return letters
+    return lettersCount
 
 main()
